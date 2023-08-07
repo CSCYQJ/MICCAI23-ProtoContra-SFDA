@@ -1,0 +1,61 @@
+# Experiment Specific
+experiment_name: 'UNet_Abdomen_MR2CT_Adapt_CL'
+data_root: '/mnt/sda/qinji/Domain_Adaptation/data/Abdomen_Data/'
+save_root: '/mnt/sda/qinji/Proto_Contra_SFDA_results/Target_Adapt/'
+source_model_path: '/home/qinji/ProtoSFDA_results/new_adaptation_results/UNET_abdomen_MR2CT_PCT/saved_models/best_model_step_25.pth'
+target_sites:
+- 'CT'
+resume_dir: ''
+continue_train: False
+total_epochs: 5
+random_seed: 999
+organ_list:
+- 'Spleen'
+- 'R.Kidney'
+- 'L.Kidney'
+- 'Liver'
+
+# Dataloader Setting
+patient_level_dataloader: False
+img_size:
+- 256
+- 256
+batch_size: 16
+num_workers: 8
+
+# Model 
+arch: 'UNet'
+use_prototype: False
+update_prototype: False
+input_dim: 3
+feat_dim: 32
+output_dim: 64
+num_classes: 5
+num_prototypes: 1
+
+# Optim parameters
+lr: 0.0001
+
+# Pseudo Loss parameters
+use_pseudo: False
+drop_percent: 80
+
+# Constrastive learning parameters
+use_contra: True
+use_source_prototypes: False
+momentum_prototype: False
+num_queries: 64
+num_negatives: 256
+current_class_threshold: 0.3
+low_entropy_threshold: 20
+low_rank: 2
+high_rank: 5
+
+# display
+save_steps: 500
+eval_steps: 5
+display_steps: 40
+save_visuals: True
+
+# test
+test: False

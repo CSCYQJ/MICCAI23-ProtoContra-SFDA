@@ -1,0 +1,47 @@
+# Experiment Specific
+experiment_name: 'UNet_Abdomen_CT_Seg'
+data_root: '/mnt/sda/qinji/Domain_Adaptation/data/Abdomen_Data/'
+save_root: '/mnt/sda/qinji/Proto_Contra_SFDA_results/Source_Seg'
+source_sites:
+- 'CT'
+resume_dir: ''
+continue_train: False
+total_epochs: 100
+random_seed: 999
+organ_list:
+- 'Spleen'
+- 'R.Kidney'
+- 'L.Kidney'
+- 'Liver'
+
+# Dataloader Setting
+img_size:
+- 256
+- 256
+batch_size: 16
+num_workers: 8
+
+# Model 
+arch: 'UNet'
+use_prototype: False
+update_prototype: False
+input_dim: 3
+feat_dim: 32
+output_dim: 64
+num_classes: 5
+
+# Optim parameters
+lr: 0.001
+
+# Loss parameters
+ce_ignore_index: -1
+dice_ignore_index: 0
+
+# display
+save_epochs: 10
+eval_epochs: 1
+display_steps: 100
+save_visuals: True
+
+# test
+test: False
