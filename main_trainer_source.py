@@ -2,7 +2,7 @@ import argparse
 import os
 import shutil
 import time
-from trainers import SourceDomainTrainer
+from trainers import SourceDomainTrainer,PFA_trainer,CL_trainer
 import json
 import glob
 import itertools
@@ -61,5 +61,13 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Train Segmentor on Source Images')
     opt = get_options(parser)
     ensure_dirs(opt)
+    # Source Model training
     trainer = SourceDomainTrainer(opt)
+    
+    # # Target domain adaptaion PFA stage
+    # trainer = PFA_trainer(opt)
+    
+    # # Target domain adaptation CL stage
+    # trainer = CL_trainer(opt)
+    
     trainer.launch()

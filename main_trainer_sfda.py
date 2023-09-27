@@ -60,7 +60,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Adapt Source Model on Target Images')
     opt = get_options(parser)
     ensure_dirs(opt)
-    trainer = PseudoLabel_Trainer(opt)
-    # trainer = PFA_Trainer(opt)
+    # trainer = PseudoLabel_Trainer(opt)
+    # First PFA stage
+    trainer = PFA_Trainer(opt)
+    # Then CL stage
     # trainer = CL_Trainer(opt)
     trainer.launch()
